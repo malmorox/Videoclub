@@ -31,8 +31,6 @@ public class ApiClient {
             URL url = new URL(finalUrl);
             connection = (HttpURLConnection) url.openConnection();
             connection.setRequestMethod("GET");
-            connection.setConnectTimeout(5000);
-            connection.setReadTimeout(5000);
         } catch (Exception e) {
             Log.e("ApiClient", "Error en la conexion con la API:", e);
         }
