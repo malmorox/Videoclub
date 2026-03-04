@@ -9,29 +9,27 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import com.bumptech.glide.Glide;
 
-class MovieViewHolder extends RecyclerView.ViewHolder {
+public class MovieViewHolder extends RecyclerView.ViewHolder {
     private ImageView imageView;
     private TextView titleView;
+    private Movie currentMovie;
 
-    public MovieViewHolder(@NonNull View itemView) {
+    public MovieViewHolder(View itemView) {
         super(itemView);
         imageView = itemView.findViewById(R.id.movieImage);
         titleView = itemView.findViewById(R.id.movieTitle);
 
         itemView.setOnClickListener(v -> {
-            Movie movie = (Movie) itemView.getTag();
-
-            if (movie != null) {
+            if (currentMovie != null) {
                 Intent intent = new Intent(itemView.getContext(), DetailActivity.class);
-                intent.putExtra("movie_id", movie.getId());
+                intent.putExtra("movie_id", currentMovie.getId());
                 itemView.getContext().startActivity(intent);
             }
         });
     }
 
     public void bind(Movie movie) {
-        // el tag es un espacio de almacenamiento en cualquier view donde se puede guardar referencias
-        itemView.setTag(movie);
+        currentMovie = movie;
 
         titleView.setText(movie.getTitle());
 

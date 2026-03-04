@@ -31,7 +31,7 @@ public class MainActivity extends AppCompatActivity {
         recyclerMovies = findViewById(R.id.moviesList);
         recyclerMovies.setLayoutManager(new LinearLayoutManager(this));
 
-        adapter = new MoviesAdapter(new ArrayList<>());
+        adapter = new MoviesAdapter();
         recyclerMovies.setAdapter(adapter);
 
         loadMovies();

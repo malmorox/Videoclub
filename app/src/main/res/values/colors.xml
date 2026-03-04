@@ -6,4 +6,5 @@
     <color name="action_bar_bg">#383636</color>
     <color name="bg">#1F1F1F</color>
     <color name="stars">#F4CE00</color>
+    <color name="stars_gray">#4B4848</color>
 </resources>
