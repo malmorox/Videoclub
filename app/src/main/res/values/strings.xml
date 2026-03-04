@@ -1,4 +1,5 @@
 <resources>
     <string name="app_name">Videoclub</string>
     <string name="movies">Películas</string>
+    <string name="refresh">Refrescar</string>
 </resources>

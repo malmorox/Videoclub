@@ -51,6 +51,7 @@ public class ApiClient {
 
                 Movie[] moviesArray = new Gson().fromJson(json, Movie[].class);
                 movies = new ArrayList<>(Arrays.asList(moviesArray));
+                Log.e("ApiClient", movies.toString());
             } else {
                 Log.e("ApiClient", "Error en codigo de respuesta: " + responseCode);
             }

@@ -2,6 +2,8 @@ package com.example.videoclub;
 
 import android.os.Bundle;
 import android.util.Log;
+import android.view.Menu;
+import android.view.MenuItem;
 import android.view.View;
 import android.widget.ProgressBar;
 import androidx.recyclerview.widget.LinearLayoutManager;
@@ -34,6 +36,24 @@ public class MainActivity extends AppCompatActivity {
 
         loadMovies();
     }
+
+    @Override
+    public boolean onCreateOptionsMenu(Menu menu) {
+        getMenuInflater().inflate(R.menu.menu_main, menu);
+        return true;
+    }
+
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+        if (item.getItemId() == R.id.refresh) {
+            progressBar.setVisibility(View.VISIBLE);
+            recyclerMovies.setVisibility(View.GONE);
+            loadMovies();
+            return true;
+        }
+        return super.onOptionsItemSelected(item);
+    }
+
 
     private void loadMovies() {
         new Thread(() -> {
