@@ -13,7 +13,7 @@ public class MoviesAdapter extends RecyclerView.Adapter<MovieViewHolder> {
 
     public void setMovies(List<Movie> movies) {
         this.movies = movies;
-        notifyDataSetChanged();
+        notifyDataSetChanged(); //TODO revisar esto para quitar el warning
     }
 
     @NonNull

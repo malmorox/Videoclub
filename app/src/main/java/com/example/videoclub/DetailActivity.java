@@ -25,14 +25,14 @@ public class DetailActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         EdgeToEdge.enable(this);
         setContentView(R.layout.activity_detail);
-
+        //TODO viewbinding
         progressBar = findViewById(R.id.circularProgressDetail);
         imageView = findViewById(R.id.detailImage);
         titleView = findViewById(R.id.detailTitle);
         descriptionView = findViewById(R.id.detailDescription);
         yearAndGenreView = findViewById(R.id.detailYearAndGenre);
         ratingBar = findViewById(R.id.detailStars);
-
+        //TODO parcelable
         int movieId = getIntent().getIntExtra("movie_id", -1);
 
         new Thread(() -> {
