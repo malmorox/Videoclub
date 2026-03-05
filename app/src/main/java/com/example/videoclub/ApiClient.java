@@ -11,7 +11,6 @@ import java.util.Arrays;
 import java.util.List;
 import java.net.HttpURLConnection;
 import com.google.gson.Gson;
-import com.google.gson.reflect.TypeToken;
 
 public class ApiClient {
     private static final String URL = "https://devsapihub.com/api-movies";

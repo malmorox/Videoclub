@@ -4,6 +4,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import androidx.annotation.NonNull;
+import androidx.recyclerview.widget.DiffUtil;
 import androidx.recyclerview.widget.RecyclerView;
 import java.util.ArrayList;
 import java.util.List;
@@ -11,9 +12,11 @@ import java.util.List;
 public class MoviesAdapter extends RecyclerView.Adapter<MovieViewHolder> {
     private List<Movie> movies = new ArrayList<>();
 
-    public void setMovies(List<Movie> movies) {
-        this.movies = movies;
-        notifyDataSetChanged(); //TODO revisar esto para quitar el warning
+    public void setMovies(List<Movie> newMovies) {
+        DiffUtil.DiffResult diffResult = DiffUtil.calculateDiff(new MoviesDiffCallback(movies, newMovies));
+
+        movies = new ArrayList<>(newMovies);
+        diffResult.dispatchUpdatesTo(this);
     }
 
     @NonNull
@@ -33,5 +36,37 @@ public class MoviesAdapter extends RecyclerView.Adapter<MovieViewHolder> {
     @Override
     public int getItemCount() {
         return movies.size();
+    }
+
+    private static class MoviesDiffCallback extends DiffUtil.Callback {
+        private final List<Movie> oldMoviesList;
+        private final List<Movie> newMoviesList;
+
+        MoviesDiffCallback(List<Movie> oldMoviesList, List<Movie> newMoviesList) {
+            this.oldMoviesList = oldMoviesList;
+            this.newMoviesList = newMoviesList;
+        }
+
+        @Override
+        public int getOldListSize() {
+            return oldMoviesList.size();
+        }
+
+        @Override
+        public int getNewListSize() {
+            return newMoviesList.size();
+        }
+
+        @Override
+        public boolean areItemsTheSame(int oldItemPosition, int newItemPosition) {
+            return oldMoviesList.get(oldItemPosition).getId() == newMoviesList.get(newItemPosition).getId();
+        }
+
+        @Override
+        public boolean areContentsTheSame(int oldItemPosition, int newItemPosition) {
+            Movie oldItem = oldMoviesList.get(oldItemPosition);
+            Movie newItem = newMoviesList.get(newItemPosition);
+            return oldItem.getTitle().equals(newItem.getTitle());
+        }
     }
 }
