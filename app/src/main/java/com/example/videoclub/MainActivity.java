@@ -5,34 +5,31 @@ import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
-import android.widget.ProgressBar;
 import androidx.recyclerview.widget.LinearLayoutManager;
-import androidx.recyclerview.widget.RecyclerView;
 import androidx.activity.EdgeToEdge;
 import androidx.appcompat.app.AppCompatActivity;
-import java.util.ArrayList;
+import com.example.videoclub.databinding.ActivityMainBinding;
 import java.util.List;
 
 public class MainActivity extends AppCompatActivity {
-    private RecyclerView recyclerMovies;
+    private ActivityMainBinding binding;
     private MoviesAdapter adapter;
-    private ProgressBar progressBar;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         EdgeToEdge.enable(this);
-        setContentView(R.layout.activity_main);
+
+        binding = ActivityMainBinding.inflate(getLayoutInflater());
+        View view = binding.getRoot();
+        setContentView(view);
 
         getSupportActionBar().setTitle(R.string.movies);
 
-        progressBar = findViewById(R.id.circularProgressMain);
-
-        recyclerMovies = findViewById(R.id.moviesList);
-        recyclerMovies.setLayoutManager(new LinearLayoutManager(this));
+        binding.moviesList.setLayoutManager(new LinearLayoutManager(this));
 
         adapter = new MoviesAdapter();
-        recyclerMovies.setAdapter(adapter);
+        binding.moviesList.setAdapter(adapter);
 
         loadMovies();
     }
@@ -46,8 +43,8 @@ public class MainActivity extends AppCompatActivity {
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
         if (item.getItemId() == R.id.refresh) {
-            progressBar.setVisibility(View.VISIBLE);
-            recyclerMovies.setVisibility(View.GONE);
+            binding.progressBar.setVisibility(View.VISIBLE);
+            binding.moviesList.setVisibility(View.GONE);
             loadMovies();
             return true;
         }
@@ -64,8 +61,8 @@ public class MainActivity extends AppCompatActivity {
                     if (movies != null && !movies.isEmpty()) {
                         adapter.setMovies(movies);
 
-                        progressBar.setVisibility(View.GONE);
-                        recyclerMovies.setVisibility(View.VISIBLE);
+                        binding.progressBar.setVisibility(View.GONE);
+                        binding.moviesList.setVisibility(View.VISIBLE);
                     } else {
                         Log.e("MainActivity", "No se pudieron cargar las peliculas");
                     }
