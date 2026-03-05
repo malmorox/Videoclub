@@ -69,9 +69,12 @@ public class MoviesAdapter extends RecyclerView.Adapter<MovieViewHolder> {
         public boolean areContentsTheSame(int oldItemPosition, int newItemPosition) {
             Movie oldItem = oldMoviesList.get(oldItemPosition);
             Movie newItem = newMoviesList.get(newItemPosition);
-            Log.d("MoviesAdapter", "[" + oldItemPosition + "," + newItemPosition + "]: "
-                    + oldItem.getTitle().equals(newItem.getTitle()));
-            return oldItem.getTitle().equals(newItem.getTitle());
+            return oldItem.getTitle().equals(newItem.getTitle())
+                    && oldItem.getDescription().equals(newItem.getDescription())
+                    && oldItem.getYear() == newItem.getYear()
+                    && oldItem.getImageUrl().equals(newItem.getImageUrl())
+                    && oldItem.getGenre().equals(newItem.getGenre())
+                    && Float.compare(oldItem.getStars(), newItem.getStars()) == 0;
         }
     }
 }
