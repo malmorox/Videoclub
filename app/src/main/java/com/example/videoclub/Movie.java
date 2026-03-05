@@ -1,6 +1,9 @@
 package com.example.videoclub;
 
-public class Movie {
+import android.os.Parcel;
+import android.os.Parcelable;
+
+public class Movie implements Parcelable {
     // se llaman las variables igual que las claves del json para que Gson pueda mapearlas bien
     private int id;
     private String title;
@@ -19,6 +22,44 @@ public class Movie {
         this.genre = genre;
         this.stars = stars;
     }
+
+    public Movie(Parcel in) {
+        id = in.readInt();
+        title = in.readString();
+        description = in.readString();
+        year = in.readInt();
+        image_url = in.readString();
+        genre = in.readString();
+        stars = in.readFloat();
+    }
+
+    @Override
+    public void writeToParcel(Parcel dest, int flags) {
+        dest.writeInt(id);
+        dest.writeString(title);
+        dest.writeString(description);
+        dest.writeInt(year);
+        dest.writeString(image_url);
+        dest.writeString(genre);
+        dest.writeFloat(stars);
+    }
+
+    @Override
+    public int describeContents() {
+        return 0;
+    }
+
+    public static final Parcelable.Creator<Movie> CREATOR = new Parcelable.Creator<Movie>() {
+        @Override
+        public Movie createFromParcel(Parcel in) {
+            return new Movie(in);
+        }
+
+        @Override
+        public Movie[] newArray(int size) {
+            return new Movie[size];
+        }
+    };
 
     public int getId() {
         return id;

@@ -9,7 +9,7 @@
     android:fitsSystemWindows="true"
     tools:context="com.example.videoclub.DetailActivity">
 
-    <ProgressBar
+    <!--<ProgressBar
         android:id="@+id/circularProgressDetail"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
@@ -17,13 +17,12 @@
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"/>
+        app:layout_constraintEnd_toEndOf="parent"/>-->
 
     <ImageView
         android:id="@+id/detailImage"
         android:layout_width="match_parent"
-        android:layout_height="500dp"
-        android:visibility="gone" />
+        android:layout_height="500dp" />
 
     <TextView
         android:id="@+id/detailTitle"
@@ -34,7 +33,6 @@
         android:textColor="@color/white"
         android:layout_marginTop="24dp"
         android:layout_marginHorizontal="16dp"
-        android:visibility="gone"
         app:layout_constraintTop_toBottomOf="@id/detailImage"/>
 
 
@@ -46,7 +44,6 @@
         android:textColor="@color/white"
         android:layout_marginTop="8dp"
         android:layout_marginHorizontal="16dp"
-        android:visibility="gone"
         app:layout_constraintTop_toBottomOf="@id/detailTitle"/>
 
     <TextView
@@ -57,7 +54,6 @@
         android:textColor="@color/gray"
         android:layout_marginTop="16dp"
         android:layout_marginHorizontal="16dp"
-        android:visibility="gone"
         app:layout_constraintTop_toBottomOf="@id/detailDescription"/>
 
     <me.zhanghai.android.materialratingbar.MaterialRatingBar
@@ -66,7 +62,6 @@
         android:layout_height="wrap_content"
         android:layout_marginTop="16dp"
         android:layout_marginHorizontal="16dp"
-        android:visibility="gone"
         android:numStars="5"
         android:stepSize="0.5"
         android:isIndicator="true"

@@ -22,7 +22,7 @@ public class MovieViewHolder extends RecyclerView.ViewHolder {
         itemView.setOnClickListener(v -> {
             if (currentMovie != null) {
                 Intent intent = new Intent(itemView.getContext(), DetailActivity.class);
-                intent.putExtra("movie_id", currentMovie.getId());
+                intent.putExtra("movie", currentMovie);
                 itemView.getContext().startActivity(intent);
             }
         });

@@ -1,5 +1,6 @@
 package com.example.videoclub;
 
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -59,6 +60,8 @@ public class MoviesAdapter extends RecyclerView.Adapter<MovieViewHolder> {
 
         @Override
         public boolean areItemsTheSame(int oldItemPosition, int newItemPosition) {
+            Log.d("MoviesAdapter", "[" + oldItemPosition + "," + newItemPosition + "]: "
+                    + (oldMoviesList.get(oldItemPosition).getId() == newMoviesList.get(newItemPosition).getId()));
             return oldMoviesList.get(oldItemPosition).getId() == newMoviesList.get(newItemPosition).getId();
         }
 
@@ -66,6 +69,8 @@ public class MoviesAdapter extends RecyclerView.Adapter<MovieViewHolder> {
         public boolean areContentsTheSame(int oldItemPosition, int newItemPosition) {
             Movie oldItem = oldMoviesList.get(oldItemPosition);
             Movie newItem = newMoviesList.get(newItemPosition);
+            Log.d("MoviesAdapter", "[" + oldItemPosition + "," + newItemPosition + "]: "
+                    + oldItem.getTitle().equals(newItem.getTitle()));
             return oldItem.getTitle().equals(newItem.getTitle());
         }
     }

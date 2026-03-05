@@ -26,14 +26,29 @@ public class DetailActivity extends AppCompatActivity {
         EdgeToEdge.enable(this);
         setContentView(R.layout.activity_detail);
         //TODO viewbinding
-        progressBar = findViewById(R.id.circularProgressDetail);
+        //progressBar = findViewById(R.id.circularProgressDetail);
         imageView = findViewById(R.id.detailImage);
         titleView = findViewById(R.id.detailTitle);
         descriptionView = findViewById(R.id.detailDescription);
         yearAndGenreView = findViewById(R.id.detailYearAndGenre);
         ratingBar = findViewById(R.id.detailStars);
-        //TODO parcelable
-        int movieId = getIntent().getIntExtra("movie_id", -1);
+
+        Movie movie = getIntent().getParcelableExtra("movie");
+
+        if (movie != null) {
+            getSupportActionBar().setTitle(movie.getTitle());
+
+            Glide.with(this)
+                    .load(movie.getImageUrl())
+                    .centerCrop()
+                    .into(imageView);
+            titleView.setText(movie.getTitle());
+            descriptionView.setText(movie.getDescription());
+            yearAndGenreView.setText(movie.getYear() + " - " + movie.getGenre());
+            ratingBar.setRating(movie.getStars());
+        }
+
+        /*int movieId = getIntent().getIntExtra("movie_id", -1);
 
         new Thread(() -> {
             Movie movie = ApiClient.getMovieById(movieId);
@@ -60,6 +75,6 @@ public class DetailActivity extends AppCompatActivity {
                     ratingBar.setVisibility(View.VISIBLE);
                 }
             });
-        }).start();
+        }).start();*/
     }
 }
